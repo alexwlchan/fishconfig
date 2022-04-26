@@ -3,58 +3,6 @@
 alias gcb="git rev-parse --abbrev-ref HEAD"
 
 
-alias groot="cd (git rev-parse --show-toplevel)"
-
-
-# Open the frontmost repository in GitHub.  Useful for switching to open
-# pull requests, issues, etc.
-function gh-open
-    # The `git branch -a -vv` command returns a list of all branches and
-    # their remote counterparts.  We're interested in lines like this:
-    #
-    #     * master                c89144f [origin/master] Commit message
-    #       master                3bcf315 [alex/master] My commit message
-    #
-    # and not like this:
-    #
-    #       remotes/origin/master c89144f Another commit message
-    #
-    # In particular, we want the remote name!
-    set master_remote (git branch -a -vv | grep ' master' | tr '*' ' ' | tr '[' ' ' | tr '/' ' ' | awk '{print $3}')
-
-    if [ -z $master_remote ]
-        echo "Unable to determine GitHub URL!"
-        return 1
-    end
-
-    # Get the remote URL: likely something of the form
-    #
-    #     git@github.com:username/repository.git
-    #     https://github.com/username/repository.git
-    #
-    set git_url (git remote get-url $master_remote)
-
-    # SSH URLs: rewrite the URL appropriately
-    echo $git_url | grep -Eq "git@github\.com:[^/]+/[^.]+\.git"
-    if [ $status = 0 ]
-        set main_url (echo $git_url | tr ':' ' ' | awk '{print $2}' | tr '.' ' ' | awk '{print $1}')
-        open "https://github.com/$main_url"
-        return 0
-    end
-
-    # HTTPS URLs: throw away the '.git' part
-    echo $git_url | grep -Eq "https://github.com/[^/]+/[^.]+\.git"
-    if [ $status = 0 ]
-        open (echo $gu | grep -Eo "https://github.com/[^/]+/[^.]+")
-        return 0
-    end
-
-    # Anything else, just give up and error out
-    echo "Unrecognised remote URL $git_url!"
-    return 1
-end
-
-
 # Clone a GitHub repo given its URL.
 #
 #     $1 = URL of the GitHub page
@@ -103,24 +51,6 @@ function github-clone
         echo "git clone $repo_url"
         git clone $repo_url
         cd $repo
-    end
-end
-
-
-# Do a clone of a GitHub repository if you don't have the full URL.
-#
-# Useful in Prompt on the iPad!
-#
-#     $1 - Name of the repository owner
-#     $2 - Name of the repository
-#
-# If only one argument is passed, assume the owner is "alexwlchan".
-function quick-clone
-    if test (count $argv) = 2
-        set url "https://github.com/$argv[1]/$argv[2]"
-        github-clone "$url"
-    else
-        quick-clone alexwlchan "$argv[1]"
     end
 end
 
