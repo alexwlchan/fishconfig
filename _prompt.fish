@@ -30,17 +30,38 @@ function print_git_information
 end
 
 
+# If I'm running over SSH, prepend the name of the remote host to
+# the context line.
+function print_ssh_information
+  if set -q SSH_CLIENT
+    printf "("
+    set_color purple
+    printf (echo -n (hostname))
+    set_color normal
+    printf ") "
+  end
+end
+
+
 function fish_prompt
   # Put a newline between new prompts for cleanliness, but not on the first run.
   #
   # This means the first prompt of a new session is right at the top of
   # the terminal window, not with a newline above it.
-  if test \( -f "/tmp/$TERM_SESSION_ID" -o -f "/tmp/$XDG_SESSION_ID" \)
-    echo ''
-  end
+  if set -q SSH_CLIENT
+    if test \( -f "/tmp/$SSH_CONNECTION" \)
+      echo ''
+    end
 
-  touch /tmp/$TERM_SESSION_ID 2>/dev/null
-  touch /tmp/$XDG_SESSION_ID 2>/dev/null
+    touch "/tmp/$SSH_CONNECTION" 2>/dev/null
+  else
+    if test \( -f "/tmp/$TERM_SESSION_ID" -o -f "/tmp/$XDG_SESSION_ID" \)
+      echo ''
+    end
+
+    touch "/tmp/$TERM_SESSION_ID" 2>/dev/null
+    touch "/tmp/$XDG_SESSION_ID" 2>/dev/null
+  end
 
   # Print some context about where I'm running this command.
   #
@@ -48,10 +69,15 @@ function fish_prompt
   # new shells open, and it's not in Git), so skip the context line to reduce
   # visual noise.
   if [ (prompt_pwd) = "~" ]
+    if set -q SSH_CLIENT
+      print_ssh_information
+      echo ''
+    end
     echo '$ '
     return
   end
 
+  print_ssh_information
   print_current_directory
   print_git_information
 
