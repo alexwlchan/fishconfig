@@ -15,6 +15,12 @@ function print_current_directory
 end
 
 
+# Print information about the current Git branch, if I'm in a Git repo.
+#
+# At one point I had similar functions for getting SVN and Mercurial information,
+# but at time of writing (Apr 2022), it's been 5+ years since I used a non-Git VCS.
+# It's not worth maintaining those alternatives or running them against every
+# shell prompt.
 function print_git_information
   which git 2>&1 >/dev/null
   if [ $status = "0" ]
@@ -24,9 +30,9 @@ function print_git_information
       printf " on git:"
       set_color cyan
       printf "$branch"
+      set_color normal
     end
   end
-  set_color normal
 end
 
 

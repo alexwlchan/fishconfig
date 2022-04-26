@@ -26,9 +26,6 @@ append_dir_to_path ~/repos/ttml2srt
 # See https://github.com/alexwlchan?tab=repositories
 append_dir_to_path ~/repos/pathscripts
 
-# A useful alias for quickly tallying a set of data
-alias tally "sort | uniq -c | sort"
-
 # Quickly create and cd to a temporary directory
 function tmpdir
     cd (mktemp -d)
