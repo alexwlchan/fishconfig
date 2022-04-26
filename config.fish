@@ -15,7 +15,6 @@ end
 # Entry point for fish shell config
 ###############################################################################
 
-# Add Cargo install path
 append_dir_to_path ~/.cargo/bin
 
 append_dir_to_path ~/Library/Python/3.7/bin
@@ -24,6 +23,7 @@ append_dir_to_path ~/Library/Python/3.9/bin
 
 append_dir_to_path ~/repos/ttml2srt
 
+# See https://github.com/alexwlchan?tab=repositories
 append_dir_to_path ~/repos/pathscripts
 
 # A useful alias for quickly tallying a set of data
