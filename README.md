@@ -35,3 +35,28 @@ It's meant to be fairly sparse, and progressively add information as it's intere
     I do prepend the hostname if I've ssh'd into a machine (detecting the `SSH_CLIENT` environment variable), so that I can see this shell isn't for the machine I'm physically using.
 
 [prompt_pwd]: https://fishshell.com/docs/current/cmds/prompt_pwd.html
+
+## Fast access to throwaway directories
+
+This function creates a new temporary directory, then switches to it immediately:
+
+```shell
+function tmpdir
+    cd (mktemp -d)
+end
+```
+
+For example:
+
+```console
+$ tmpdir
+
+$ pwd
+/private/var/folders/jy/351n9lnj5l3f07rtf2xybxx00000gn/T/tmp.IPM5GStx
+```
+
+I use this multiple times a day, whenever I want to write a throwaway Python script or a quick example.
+I create the temp directory, do whatever work I need to do, then I move on -- and at some point (probably the next restart), the OS will clean it up for me.
+If I decide I actually do want to keep it, I just move the folder to my Desktop.
+
+It means I don't have to worry about cluttering up my disk with files that don't have any long-term value.
