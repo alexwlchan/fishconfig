@@ -50,7 +50,6 @@ set -x TF_PLUGIN_CACHE_DIR ~/.terraform.d/plugin-cache
 
 . $DIR/_prompt.fish
 . $DIR/_git.fish
-. $DIR/_twitter.fish
 
 # Load macOS-specific utilities
 if [ (uname -s) = "Darwin" ]
