@@ -54,12 +54,12 @@ function fish_prompt
   #
   # This means the first prompt of a new session is right at the top of
   # the terminal window, not with a newline above it.
+  #
+  # If we're in an SSH session, we always insert a newline, even on the first
+  # command -- to separate from the client session.  I avoid getting the
+  # 'Last login' message with `touch ~/.hushlogin`
   if set -q SSH_CLIENT
-    if test \( -f "/tmp/$SSH_CONNECTION" \)
-      echo ''
-    end
-
-    touch "/tmp/$SSH_CONNECTION" 2>/dev/null
+    echo ''
   else
     if test \( -f "/tmp/$TERM_SESSION_ID" -o -f "/tmp/$XDG_SESSION_ID" \)
       echo ''
