@@ -3,7 +3,7 @@
 ###############################################################################
 
 # Provide a convenient alias for the front URL in both browsers
-alias furl="~/.cargo/bin/safari url"
+alias furl="safari url"
 alias gurl="osascript -e 'tell application \"Google Chrome\" to tell front window to get URL of tab (active tab index)'"
 
 
