@@ -1,8 +1,3 @@
-# Name of the current branch
-# http://stackoverflow.com/a/12142066/1558022
-alias gcb="git rev-parse --abbrev-ref HEAD"
-
-
 # Clone a GitHub repo given its URL.
 #
 #     $1 = URL of the GitHub page
