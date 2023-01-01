@@ -20,6 +20,7 @@ set --global --export PATH $PATH \
   ~/repos/pathscripts \
   ~/repos/pathscripts/aws \
   ~/repos/pathscripts/git \
+  ~/repos/pathscripts/installers \
   ~/repos/pathscripts/terraform
 
 append_dir_to_path ~/.cargo/bin
