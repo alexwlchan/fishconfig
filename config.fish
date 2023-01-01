@@ -6,7 +6,7 @@ set -x ROOT (dirname $DIR)
 function append_dir_to_path
     set dir $argv[1]
     if [ -d "$dir" ]
-        set -g -x PATH $PATH $dir
+        set --global --export PATH $PATH $dir
     end
 end
 
@@ -16,10 +16,11 @@ end
 ###############################################################################
 
 # See https://github.com/alexwlchan/pathscripts
-append_dir_to_path ~/repos/pathscripts
-append_dir_to_path ~/repos/pathscripts/aws
-append_dir_to_path ~/repos/pathscripts/git
-append_dir_to_path ~/repos/pathscripts/terraform
+set --global --export PATH $PATH \
+  ~/repos/pathscripts \
+  ~/repos/pathscripts/aws \
+  ~/repos/pathscripts/git \
+  ~/repos/pathscripts/terraform
 
 append_dir_to_path ~/.cargo/bin
 
