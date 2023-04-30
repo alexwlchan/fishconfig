@@ -15,14 +15,14 @@ end
 # Entry point for fish shell config
 ###############################################################################
 
-# See https://github.com/alexwlchan/pathscripts
+# See https://github.com/alexwlchan/scripts
 set --global --export PATH $PATH \
-  ~/repos/pathscripts \
-  ~/repos/pathscripts/aws \
-  ~/repos/pathscripts/git \
-  ~/repos/pathscripts/installers \
-  ~/repos/pathscripts/macos \
-  ~/repos/pathscripts/terraform
+  ~/repos/scripts \
+  ~/repos/scripts/aws \
+  ~/repos/scripts/git \
+  ~/repos/scripts/installers \
+  ~/repos/scripts/macos \
+  ~/repos/scripts/terraform
 
 append_dir_to_path ~/.cargo/bin
 
