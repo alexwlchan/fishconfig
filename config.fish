@@ -19,6 +19,7 @@ end
 set --global --export PATH $PATH \
   ~/repos/scripts \
   ~/repos/scripts/aws \
+  ~/repos/scripts/fs \
   ~/repos/scripts/git \
   ~/repos/scripts/installers \
   ~/repos/scripts/macos \
