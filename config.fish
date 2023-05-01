@@ -19,8 +19,10 @@ end
 set --global --export PATH $PATH \
   ~/repos/scripts \
   ~/repos/scripts/aws \
+  ~/repos/scripts/docker \
   ~/repos/scripts/fs \
   ~/repos/scripts/git \
+  ~/repos/scripts/images \
   ~/repos/scripts/installers \
   ~/repos/scripts/macos \
   ~/repos/scripts/terraform \
