@@ -23,7 +23,8 @@ set --global --export PATH $PATH \
   ~/repos/scripts/git \
   ~/repos/scripts/installers \
   ~/repos/scripts/macos \
-  ~/repos/scripts/terraform
+  ~/repos/scripts/terraform \
+  ~/repos/scripts/wellcome
 
 append_dir_to_path ~/.cargo/bin
 
