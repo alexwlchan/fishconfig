@@ -16,7 +16,9 @@ end
 ###############################################################################
 
 # See https://github.com/alexwlchan/scripts
-set --global --export PATH $PATH \
+set --global --export PATH \
+  ~/repos/scripts/docker \
+  $PATH \
   ~/repos/scripts \
   ~/repos/scripts/aws \
   ~/repos/scripts/docker \
