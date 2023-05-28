@@ -27,6 +27,7 @@ set --global --export PATH \
   ~/repos/scripts/images \
   ~/repos/scripts/installers \
   ~/repos/scripts/macos \
+  ~/repos/scripts/python \
   ~/repos/scripts/terraform \
   ~/repos/scripts/text \
   ~/repos/scripts/wellcome
