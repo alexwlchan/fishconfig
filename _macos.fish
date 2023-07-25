@@ -9,5 +9,6 @@ alias gurl="osascript -e 'tell application \"Google Chrome\" to tell front windo
 
 # Get the URL of the frontmost GitHub page and clone it
 function gh-clone
+    _ensure_ssh_key_loaded
     github-clone (furl)
 end
