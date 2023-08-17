@@ -30,7 +30,8 @@ set --global --export PATH \
   ~/repos/scripts/python \
   ~/repos/scripts/terraform \
   ~/repos/scripts/text \
-  ~/repos/scripts/wellcome
+  ~/repos/scripts/wellcome \
+  ~/repos/private-scripts
 
 append_dir_to_path ~/.cargo/bin
 
