@@ -2,45 +2,35 @@ set -x DIR ~/repos/fishconfig
 set -x ROOT (dirname $DIR)
 
 
-# Add a directory to the path, if it exists
-function append_dir_to_path
-    set dir $argv[1]
-    if [ -d "$dir" ]
-        set --global --export PATH $PATH $dir
-    end
-end
-
-
 ###############################################################################
 # Entry point for fish shell config
 ###############################################################################
 
 # See https://github.com/alexwlchan/scripts
-set --global --export PATH \
-  ~/repos/scripts/docker \
-  $PATH \
-  ~/repos/scripts \
-  ~/repos/scripts/aws \
-  ~/repos/scripts/docker \
-  ~/repos/scripts/fs \
-  ~/repos/scripts/git \
-  ~/repos/scripts/images \
-  ~/repos/scripts/installers \
-  ~/repos/scripts/macos \
-  ~/repos/scripts/python \
-  ~/repos/scripts/terraform \
-  ~/repos/scripts/text \
-  ~/repos/scripts/wellcome \
-  ~/repos/private-scripts
+fish_add_path ~/repos/scripts/docker
 
-append_dir_to_path ~/.cargo/bin
+fish_add_path ~/repos/scripts
+fish_add_path ~/repos/scripts/aws
+fish_add_path ~/repos/scripts/docker
+fish_add_path ~/repos/scripts/fs
+fish_add_path ~/repos/scripts/git
+fish_add_path ~/repos/scripts/images
+fish_add_path ~/repos/scripts/installers
+fish_add_path ~/repos/scripts/macos
+fish_add_path ~/repos/scripts/python
+fish_add_path ~/repos/scripts/terraform
+fish_add_path ~/repos/scripts/text
+fish_add_path ~/repos/scripts/wellcome
+fish_add_path ~/repos/private-scripts
 
-append_dir_to_path ~/Library/Python/3.10/bin
-append_dir_to_path ~/Library/Python/3.9/bin
-append_dir_to_path ~/Library/Python/3.8/bin
-append_dir_to_path ~/Library/Python/3.7/bin
+fish_add_path ~/.cargo/bin
 
-append_dir_to_path ~/repos/ttml2srt
+fish_add_path ~/Library/Python/3.10/bin
+fish_add_path ~/Library/Python/3.9/bin
+fish_add_path ~/Library/Python/3.8/bin
+fish_add_path ~/Library/Python/3.7/bin
+
+fish_add_path ~/repos/ttml2srt
 
 # Quickly create and cd to a temporary directory
 function tmpdir
