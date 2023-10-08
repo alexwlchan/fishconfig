@@ -58,3 +58,12 @@ set -x TF_PLUGIN_CACHE_DIR ~/.terraform.d/plugin-cache
 if [ (uname -s) = "Darwin" ]
     . $DIR/_macos.fish
 end
+
+# Removes the last-typed command from my fish history.
+#
+# This means that if I mistype a command and it starts appearing in
+# my suggested commands, I can type it one more time then purge it from
+# my history, to prevent it being suggested again.
+function forget_last_command
+    history delete --exact --case-sensitive (history --max 1)
+end
