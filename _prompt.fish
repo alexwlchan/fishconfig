@@ -28,10 +28,40 @@ function print_git_information
     if [ -n "$branch" ]
       set_color normal
       printf " on git:"
-      set_color cyan
+      
+      if test (basename "$branch") = "main"
+        set_color cyan
+      else
+        set_color magenta
+      end
+            
       printf "$branch"
       set_color normal
     end
+  end
+end
+
+
+# Print information about the current virtualenv, if one is enabled.
+#
+# The VIRTUAL_ENV_DISABLE_PROMPT command disables the auto-prepending of the
+# venv into my prompt by the virtualenv itself; see 
+# https://stackoverflow.com/a/63029769/1558022
+set -x VIRTUAL_ENV_DISABLE_PROMPT 1
+
+function print_venv_information
+  if [ -n "$VIRTUAL_ENV" ]
+    set_color normal
+    printf " using "
+
+    if test (basename "$VIRTUAL_ENV") = ".venv"
+      set_color cyan
+    else
+      set_color magenta
+    end
+
+    printf (basename "$VIRTUAL_ENV")
+    set_color normal
   end
 end
 
@@ -86,6 +116,7 @@ function fish_prompt
   print_ssh_information
   print_current_directory
   print_git_information
+  print_venv_information
 
   # Print the shell prompt.
   #
