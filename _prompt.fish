@@ -32,7 +32,7 @@ function print_git_information
       if test (basename "$branch") = "main"
         set_color cyan
       else
-        set_color magenta
+        set_color purple
       end
             
       printf "$branch"
@@ -63,7 +63,7 @@ function print_venv_information
     if test (basename "$VIRTUAL_ENV") = ".venv"
       set_color cyan
     else
-      set_color magenta
+      set_color purple
     end
 
     printf (basename "$VIRTUAL_ENV")
