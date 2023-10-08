@@ -36,6 +36,12 @@ function print_git_information
       end
             
       printf "$branch"
+
+      # Print an asterisk to indicate uncommitted changes, if there are any
+      if ! git diff-index --quiet HEAD --
+        printf "*"
+      end
+      
       set_color normal
     end
   end
