@@ -28,20 +28,20 @@ function print_git_information
     if [ -n "$branch" ]
       set_color normal
       printf " on git:"
-      
+
       if test (basename "$branch") = "main"
         set_color cyan
       else
         set_color purple
       end
-            
+
       printf "$branch"
 
       # Print an asterisk to indicate uncommitted changes, if there are any
       if ! git diff-index --quiet HEAD --
         printf "*"
       end
-      
+
       set_color normal
     end
   end
@@ -51,7 +51,7 @@ end
 # Print information about the current virtualenv, if one is enabled.
 #
 # The VIRTUAL_ENV_DISABLE_PROMPT command disables the auto-prepending of the
-# venv into my prompt by the virtualenv itself; see 
+# venv into my prompt by the virtualenv itself; see
 # https://stackoverflow.com/a/63029769/1558022
 set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 
@@ -86,6 +86,8 @@ end
 
 
 function fish_prompt
+  forget_dangerous_history_commands
+
   # Put a newline between new prompts for cleanliness, but not on the first run.
   #
   # This means the first prompt of a new session is right at the top of

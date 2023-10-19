@@ -49,6 +49,16 @@ function forget_last_command
     history delete --exact --case-sensitive (history --max 1)
 end
 
+# Allow me to prevent certain dangerous commands from ever
+# appearing in autocomplete.
+function forget_dangerous_history_commands
+    set LAST_COMMAND (history --max 1)
+
+    if [ "$LAST_COMMAND" = "git push origin (gcb) --force" ]
+        history delete --exact --case-sensitive "$LAST_COMMAND"
+    end
+end
+
 # Only keep a single copy of my ~/.terraform plugins, rather than one copy
 # per working directory
 # See https://www.terraform.io/docs/configuration/providers.html#provider-plugin-cache
@@ -89,7 +99,7 @@ function __auto_source_venv --on-variable PWD --description "Activate/Deactivate
     # virtualenv starting from the current directory.
     while string match "$gitdir*" "$cwd" &>/dev/null
       if test -e "$cwd/.venv/bin/activate.fish"
-        source "$cwd/.venv/bin/activate.fish" &>/dev/null 
+        source "$cwd/.venv/bin/activate.fish" &>/dev/null
         return
       else
         set cwd (path dirname "$cwd")
