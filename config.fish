@@ -51,7 +51,7 @@ end
 function forget_last_command
     set last_typed_command (history --max 1)
     history delete --exact --case-sensitive "$last_typed_command"
-    true
+    history save
 end
 
 # Allow me to prevent certain dangerous commands from ever
