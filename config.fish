@@ -45,17 +45,26 @@ end
 # This means that if I mistype a command and it starts appearing in
 # my suggested commands, I can type it one more time then purge it from
 # my history, to prevent it being suggested again.
+#
+# See https://alexwlchan.net/2023/forgetful-fish/
+# See https://github.com/fish-shell/fish-shell/issues/10066
 function forget_last_command
-    history delete --exact --case-sensitive (history --max 1)
+    set last_typed_command (history --max 1)
+    history delete --exact --case-sensitive "$last_typed_command"
+    true
 end
 
 # Allow me to prevent certain dangerous commands from ever
 # appearing in autocomplete.
+#
+# See https://alexwlchan.net/2023/forgetful-fish/
+# See https://github.com/fish-shell/fish-shell/issues/10066
 function forget_dangerous_history_commands
-    set LAST_COMMAND (history --max 1)
+    set last_typed_command (history --max 1)
 
-    if [ "$LAST_COMMAND" = "git push origin (gcb) --force" ]
-        history delete --exact --case-sensitive "$LAST_COMMAND"
+    if [ "$last_typed_command" = "git push origin (gcb) --force" ]
+        history delete --exact --case-sensitive "$last_typed_command"
+        history save
     end
 end
 
