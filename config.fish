@@ -68,12 +68,6 @@ function forget_dangerous_history_commands
     end
 end
 
-# Only keep a single copy of my ~/.terraform plugins, rather than one copy
-# per working directory
-# See https://www.terraform.io/docs/configuration/providers.html#provider-plugin-cache
-set -x TF_PLUGIN_CACHE_DIR ~/.terraform.d/plugin-cache
-
-
 ###############################################################################
 # Other fish config files
 ###############################################################################
