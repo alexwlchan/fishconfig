@@ -49,14 +49,24 @@ function github-clone
 
         # If this looks like a Python repository, create a virtualenv
         # in the root of the repo.
+        #
+        # I upgrade pip because otherwise I get warnings about it being
+        # out-of-date, and that's annoying.
+        #
+        # I auto-populate .git/info/exclude with a few common entries to
+        # save having to do it later.  (I could use a global .gitignore,
+        # but this way it's managed programatically and all local to the
+        # repo, which I slightly prefer to a homefolder full of manually
+        # managed dotfiles.)
         if [ -f "requirements.txt" ]
             echo "Creating virtualenv..."
             python3 -m venv .venv
             source .venv/bin/activate.fish
 
-            echo .venv >> .git/info/exclude
-
             python3 -m pip install --upgrade pip
+
+            echo .venv     >> .git/info/exclude
+            echo .DS_Store >> .git/info/exclude
         end
     end
 end
