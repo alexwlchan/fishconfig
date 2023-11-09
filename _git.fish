@@ -46,6 +46,18 @@ function github-clone
         echo "git clone $repo_url"
         git clone $repo_url
         cd $repo
+
+        # If this looks like a Python repository, create a virtualenv
+        # in the root of the repo.
+        if [ -f "requirements.txt" ]
+            echo "Creating virtualenv..."
+            python3 -m venv .venv
+            source .venv/bin/activate.fish
+
+            echo .venv >> .git/info/exclude
+
+            python3 -m pip install --upgrade pip
+        end
     end
 end
 
