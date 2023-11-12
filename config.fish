@@ -20,9 +20,10 @@ fish_add_path ~/repos/scripts/macos
 fish_add_path ~/repos/scripts/python
 fish_add_path ~/repos/scripts/terraform
 fish_add_path ~/repos/scripts/text
-
 fish_add_path ~/repos/.with-venv-python
+
 fish_add_path ~/repos/private-scripts
+fish_add_path ~/repos/private-scripts/.with-venv-python
 
 fish_add_path ~/.cargo/bin
 
