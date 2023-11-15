@@ -12,6 +12,7 @@ fish_add_path ~/repos/scripts/docker
 fish_add_path ~/repos/scripts
 fish_add_path ~/repos/scripts/aws
 fish_add_path ~/repos/scripts/docker
+fish_add_path ~/repos/scripts/flickr
 fish_add_path ~/repos/scripts/fs
 fish_add_path ~/repos/scripts/git
 fish_add_path ~/repos/scripts/images
