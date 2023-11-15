@@ -12,7 +12,9 @@ function new_venv
 
   python3 -m pip install --upgrade pip
 
-  echo .venv >> .git/info/exclude
+  if [ -f .git ]
+    echo .venv >> .git/info/exclude
+  end
 end
 
 # Taken from https://gist.github.com/tommyip/cf9099fa6053e30247e5d0318de2fb9e
